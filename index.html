@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Anatomy Explorer | 人體構造奧秘 - 專業 3D 醫學解剖探索</title>
+    <meta name="description" content="深入探索人體五大核心解剖系統：呼吸、循環、消化、內分泌與骨骼肌肉系統。以專業 3D 視覺與臨床清晰度呈現生命的精密運作。">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Top Progress Bar -->
+    <div id="scroll-progress" class="scroll-progress-bar"></div>
+
+    <!-- Sticky Navigation Header -->
+    <header class="site-header" id="site-header">
+        <div class="nav-container">
+            <a href="#hero" class="brand-logo" id="brand-logo">
+                <div class="brand-icon">
+                    <span class="icon-pulse"></span>
+                    🧬
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">AnatomyExplorer</span>
+                    <span class="brand-subtitle">人體構造奧秘</span>
+                </div>
+            </a>
+
+            <nav class="nav-menu" id="nav-menu">
+                <a href="#hero" class="nav-link active" data-target="hero">總覽</a>
+                <a href="#respiratory" class="nav-link" data-target="respiratory">
+                    <span class="nav-dot cyan"></span>呼吸系統
+                </a>
+                <a href="#circulatory" class="nav-link" data-target="circulatory">
+                    <span class="nav-dot red"></span>循環系統
+                </a>
+                <a href="#digestive" class="nav-link" data-target="digestive">
+                    <span class="nav-dot emerald"></span>消化系統
+                </a>
+                <a href="#endocrine" class="nav-link" data-target="endocrine">
+                    <span class="nav-dot amber"></span>內分泌系統
+                </a>
+                <a href="#musculoskeletal" class="nav-link" data-target="musculoskeletal">
+                    <span class="nav-dot indigo"></span>骨骼肌肉
+                </a>
+                <a href="#coordination" class="nav-link" data-target="coordination">協同與恆定</a>
+                <a href="#quiz" class="nav-link" data-target="quiz">知識測驗</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="#respiratory" class="btn-primary" id="btn-start-explore">開始探索</a>
+                <button class="mobile-toggle" id="mobile-menu-btn" aria-label="切換選單">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-section" id="hero">
+            <div class="hero-bg-glow"></div>
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div class="badge-pill">
+                        <span class="pulse-dot"></span>
+                        <span class="badge-text">Anatomical Clarity • 醫學級 3D 視覺導覽</span>
+                    </div>
+                    <h1 class="hero-title">
+                        人體：極致精密的<br>
+                        <span class="gradient-text">生命運作機器</span>
+                    </h1>
+                    <p class="hero-description">
+                        人體是自然界中最精密的生物工程傑作。數百兆細胞與五大核心系統每分每秒完美協同，維持生命的流暢運轉與動態恆定。透過高清 3D 解剖視角，探索身體內部的運作奧秘。
+                    </p>
+
+                    <!-- Fast System Jump Badges -->
+                    <div class="system-pills">
+                        <a href="#respiratory" class="sys-pill pill-cyan">🫁 呼吸系統</a>
+                        <a href="#circulatory" class="sys-pill pill-red">🫀 循環系統</a>
+                        <a href="#digestive" class="sys-pill pill-emerald">🥗 消化系統</a>
+                        <a href="#endocrine" class="sys-pill pill-amber">⚡ 內分泌系統</a>
+                        <a href="#musculoskeletal" class="sys-pill pill-indigo">🦴 骨骼肌肉</a>
+                    </div>
+
+                    <!-- Macro Stats -->
+                    <div class="hero-stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">37.2 <span class="stat-unit">兆</span></div>
+                            <div class="stat-label">人體協同細胞總數</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">206 <span class="stat-unit">塊</span></div>
+                            <div class="stat-label">支撐人體的骨骼數量</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">100,000 <span class="stat-unit">km</span></div>
+                            <div class="stat-label">全身血管總長度 (繞地球2.5圈)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">70 <span class="stat-unit">次/分</span></div>
+                            <div class="stat-label">心臟不間斷泵血脈動</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual-card">
+                    <div class="visual-frame">
+                        <img src="images/hero.jpg" alt="人體構造 3D 總覽透視" class="hero-image" id="hero-img">
+                        <div class="visual-overlay-tag top-left">
+                            <span class="tag-label">系統總覽 (Overview)</span>
+                            <span class="tag-status">即時生理狀態正常</span>
+                        </div>
+                        <div class="visual-overlay-tag bottom-right">
+                            <span class="tag-label">3D Rendering</span>
+                            <span class="tag-status">8K Clinical Fidelity</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SYSTEM 1: RESPIRATORY SYSTEM -->
+        <section class="system-section bg-light" id="respiratory">
+            <div class="container">
+                <div class="section-header cyan-theme">
+                    <div class="section-badge">
+                        <span class="badge-icon">🫁</span>
+                        <span class="badge-text">SYSTEM 01 • RESPIRATORY SYSTEM</span>
+                    </div>
+                    <h2 class="section-title">呼吸系統：氣體交換的生命門戶</h2>
+                    <p class="section-lead">每分鐘進行 12~20 次無意識呼吸，為 37 兆細胞源源不絕地提供氧氣，並排出二氧化碳代謝產物。</p>
+                </div>
+
+                <div class="system-grid">
+                    <!-- Visual Left -->
+                    <div class="system-visual">
+                        <div class="image-wrapper cyan-glow">
+                            <img src="images/respiratory.jpg" alt="呼吸系統 3D 解剖圖" class="system-img">
+                            <div class="image-caption">
+                                <strong>3D 醫學渲染</strong>：氣管、支氣管樹與肺泡微觀叢
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Right -->
+                    <div class="system-info">
+                        <h3 class="info-title">核心構造與生理機制</h3>
+                        <p class="info-desc">
+                            空氣自鼻腔與喉部進入，經過氣管向下分流至左右主支氣管，最終深入如樹冠般分岔的 23 級細支氣管網絡，抵達微觀肺泡進行氣體擴散。
+                        </p>
+
+                        <!-- Organ Cards -->
+                        <div class="organ-cards">
+                            <div class="organ-card active" data-organ="trachea">
+                                <div class="organ-head">
+                                    <span class="organ-bullet cyan"></span>
+                                    <h4>氣管與喉 (Trachea & Larynx)</h4>
+                                </div>
+                                <p>具 16-20 個 C 型透明軟骨環防止管道塌陷，內襯纖毛上皮分泌黏液捕捉並向上推送微塵與病原體。</p>
+                            </div>
+                            <div class="organ-card" data-organ="bronchi">
+                                <div class="organ-head">
+                                    <span class="organ-bullet cyan"></span>
+                                    <h4>支氣管樹 (Bronchial Tree)</h4>
+                                </div>
+                                <p>多達 23 代分枝，終末細支氣管直徑小於 0.5 毫米，平滑肌受自主神經調節控制氣道阻力。</p>
+                            </div>
+                            <div class="organ-card" data-organ="alveoli">
+                                <div class="organ-head">
+                                    <span class="organ-bullet cyan"></span>
+                                    <h4>肺泡微型叢 (Alveoli)</h4>
+                                </div>
+                                <p>雙肺擁有約 3 至 5 億個微型氣囊，總擴散面積達 70-100 平方公尺，外層緊密包覆毛細血管網。</p>
+                            </div>
+                            <div class="organ-card" data-organ="diaphragm">
+                                <div class="organ-head">
+                                    <span class="organ-bullet cyan"></span>
+                                    <h4>橫膈膜與肋間肌 (Diaphragm)</h4>
+                                </div>
+                                <p>主要呼吸肌，收縮時下移擴大胸腔體積，形成負壓將空氣吸入肺部；舒張時氣體自然排出。</p>
+                            </div>
+                        </div>
+
+                        <!-- How it works timeline -->
+                        <div class="mechanism-box">
+                            <h4 class="mech-title">氣體交換三步驟流程</h4>
+                            <div class="step-line">
+                                <div class="step-item">
+                                    <span class="step-num">1</span>
+                                    <div class="step-text">
+                                        <strong>吸氣負壓</strong>
+                                        <p>橫膈膜收縮下移，胸腔擴張產生負壓吸入空氣</p>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <span class="step-num">2</span>
+                                    <div class="step-text">
+                                        <strong>肺泡擴散</strong>
+                                        <p>氧氣跨越單層細胞壁進入血液，CO₂ 擴散回肺泡</p>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <span class="step-num">3</span>
+                                    <div class="step-text">
+                                        <strong>血液輸送</strong>
+                                        <p>血紅素結合氧分子，隨動脈循環運送至全身各組織</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Clinical Insight -->
+                        <div class="clinical-box cyan-border">
+                            <div class="clinical-icon">💡</div>
+                            <div class="clinical-content">
+                                <strong>臨床醫學洞察：肺泡表面活性劑 (Surfactant)</strong>
+                                <p>II 型肺泡上皮細胞分泌的磷脂蛋白質能顯著降低表面張力，防止呼氣時肺泡微氣囊塌陷黏合，是呼吸生理中不可或缺的物理保護機制。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SYSTEM 2: CIRCULATORY SYSTEM (Reversed Z-Pattern) -->
+        <section class="system-section" id="circulatory">
+            <div class="container">
+                <div class="section-header red-theme">
+                    <div class="section-badge">
+                        <span class="badge-icon">🫀</span>
+                        <span class="badge-text">SYSTEM 02 • CIRCULATORY SYSTEM</span>
+                    </div>
+                    <h2 class="section-title">循環系統：全身養分與氧氣的高速網絡</h2>
+                    <p class="section-lead">以四腔室肌肉心臟為動力心臟泵，推動血液日夜流淌於 10 萬公里血管網路，支撐細胞代謝需求。</p>
+                </div>
+
+                <div class="system-grid reverse-layout">
+                    <!-- Visual Right in desktop -->
+                    <div class="system-visual">
+                        <div class="image-wrapper red-glow">
+                            <img src="images/circulatory.jpg" alt="心血管循環系統 3D 解剖圖" class="system-img">
+                            <div class="image-caption">
+                                <strong>3D 醫學渲染</strong>：四腔室心臟、主動脈、肺循環與全身動靜脈網
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Left in desktop -->
+                    <div class="system-info">
+                        <h3 class="info-title">核心構造與生理機制</h3>
+                        <p class="info-desc">
+                            人體心血管系統包含體循環（Systemic Circulation）與肺循環（Pulmonary Circulation）。心臟以每分鐘約 5
+                            公升的輸出量，精準供給全身各器官氧氣與養分。
+                        </p>
+
+                        <div class="organ-cards">
+                            <div class="organ-card active" data-organ="heart">
+                                <div class="organ-head">
+                                    <span class="organ-bullet red"></span>
+                                    <h4>四腔室心臟 (Heart 4-Chambers)</h4>
+                                </div>
+                                <p>右心房/室負責接收缺氧血並泵向肺部；左心室肌肉壁最厚（約 1.5 cm），產生強大收縮壓將充氧血泵入全身。</p>
+                            </div>
+                            <div class="organ-card" data-organ="arteries">
+                                <div class="organ-head">
+                                    <span class="organ-bullet red"></span>
+                                    <h4>主動脈與動脈系統 (Aorta & Arteries)</h4>
+                                </div>
+                                <p>具備豐富彈性纖維與平滑肌，能承受收縮期高壓（120 mmHg）並藉由彈性回縮維持舒張期血流平穩前進。</p>
+                            </div>
+                            <div class="organ-card" data-organ="veins">
+                                <div class="organ-head">
+                                    <span class="organ-bullet blue"></span>
+                                    <h4>靜脈與瓣膜 (Veins & Valves)</h4>
+                                </div>
+                                <p>血壓較低，血管壁較薄。四肢靜脈內建單向半月瓣膜，配合周圍骨骼肌收縮（肌肉泵作用）抵抗重力將血液推回心臟。</p>
+                            </div>
+                            <div class="organ-card" data-organ="capillaries">
+                                <div class="organ-head">
+                                    <span class="organ-bullet red"></span>
+                                    <h4>毛細血管網 (Capillary Network)</h4>
+                                </div>
+                                <p>管徑僅 5~10 微米（僅容單顆紅血球通過），單層內皮細胞構成，為組織細胞進行氧氣、養分及代謝物交換的場所。</p>
+                            </div>
+                        </div>
+
+                        <div class="mechanism-box">
+                            <h4 class="mech-title">雙循環循環路徑</h4>
+                            <div class="step-line">
+                                <div class="step-item">
+                                    <span class="step-num red-num">1</span>
+                                    <div class="step-text">
+                                        <strong>肺循環充氧</strong>
+                                        <p>右心室 → 肺動脈 → 肺毛細血管（排出 CO₂，吸收 O₂） → 肺靜脈 → 左心房</p>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <span class="step-num red-num">2</span>
+                                    <div class="step-text">
+                                        <strong>體循環高壓泵送</strong>
+                                        <p>左心室 → 主動脈 → 各器官分支動脈 → 組織毛細血管釋放氧氣與養分</p>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <span class="step-num red-num">3</span>
+                                    <div class="step-text">
+                                        <strong>靜脈回流與過濾</strong>
+                                        <p>上下腔靜脈 → 右心房；肝門靜脈將消化道養分送往肝臟代謝與解毒</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clinical-box red-border">
+                            <div class="clinical-icon">❤️</div>
+                            <div class="clinical-content">
+                                <strong>臨床醫學洞察：心臟電傳導與竇房結 (SA Node)</strong>
+                                <p>心臟擁有獨立的自律性起搏點——竇房結（位於右心房壁），每分鐘自動發送 60-100 次電脈衝，經房室結（AV Node）與希氏束精確協調心房與心室的節律收縮。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SYSTEM 3: DIGESTIVE SYSTEM -->
+        <section class="system-section bg-light" id="digestive">
+            <div class="container">
+                <div class="section-header emerald-theme">
+                    <div class="section-badge">
+                        <span class="badge-icon">🥗</span>
+                        <span class="badge-text">SYSTEM 03 • DIGESTIVE SYSTEM</span>
+                    </div>
+                    <h2 class="section-title">消化系統：能量與營養分子的轉化精煉廠</h2>
+                    <p class="section-lead">從食物入口至分子級吸收，消化道長達 9 公尺，結合機械性研磨與多重酵素化學分解。</p>
+                </div>
+
+                <div class="system-grid">
+                    <!-- Visual Left -->
+                    <div class="system-visual">
+                        <div class="image-wrapper emerald-glow">
+                            <img src="images/digestive.jpg" alt="消化系統 3D 解剖圖" class="system-img">
+                            <div class="image-caption">
+                                <strong>3D 醫學渲染</strong>：食道、胃、肝臟、膽囊、胰臟、小腸與大腸
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Right -->
+                    <div class="system-info">
+                        <h3 class="info-title">核心構造與生理機制</h3>
+                        <p class="info-desc">
+                            食物歷經口腔咀嚼、胃部強酸研磨、十二指腸酵素催化，並在小腸長達數百萬條絨毛表面進行高效主動運輸與被動吸收。
+                        </p>
+
+                        <div class="organ-cards">
+                            <div class="organ-card active" data-organ="stomach">
+                                <div class="organ-head">
+                                    <span class="organ-bullet emerald"></span>
+                                    <h4>胃與胃酸分泌 (Stomach & Gastric Acid)</h4>
+                                </div>
+                                <p>分泌鹽酸（pH 1.5-2.0）殺滅細菌並活化胃蛋白酶，強力三層平滑肌收縮將固體食物研磨為食糜（Chyme）。</p>
+                            </div>
+                            <div class="organ-card" data-organ="liver">
+                                <div class="organ-head">
+                                    <span class="organ-bullet emerald"></span>
+                                    <h4>肝臟與膽囊 (Liver & Gallbladder)</h4>
+                                </div>
+                                <p>人體最大化學工廠，負責合成膽汁乳化脂質、儲存肝醣、合成血漿蛋白及解毒外來代謝物。</p>
+                            </div>
+                            <div class="organ-card" data-organ="pancreas">
+                                <div class="organ-head">
+                                    <span class="organ-bullet emerald"></span>
+                                    <h4>胰臟外分泌腺 (Pancreas Exocrine)</h4>
+                                </div>
+                                <p>每日分泌約 1.5 公升胰液，富含碳酸氫鈉中和胃酸，並提供胰澱粉酶、胰蛋白酶與胰脂酶催化消化。</p>
+                            </div>
+                            <div class="organ-card" data-organ="intestines">
+                                <div class="organ-head">
+                                    <span class="organ-bullet emerald"></span>
+                                    <h4>小腸與大腸 (Small & Large Intestine)</h4>
+                                </div>
+                                <p>小腸微絨毛使表面積擴增至 250 平方公尺，完成 90% 養分吸收；大腸則回收水分並由數兆共生菌群合成維生素 K 與 B 群。</p>
+                            </div>
+                        </div>
+
+                        <div class="mechanism-box">
+                            <h4 class="mech-title">養分分解吸收途徑</h4>
+                            <div class="step-line">
+                                <div class="step-item">
+                                    <span class="step-num emerald-num">1</span>
+                                    <div class="step-text">
+                                        <strong>強酸研磨化學分解</strong>
+                                        <p>胃部蠕動研磨，胃蛋白酶分解大分子蛋白質為多胜肽</p>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <span class="step-num emerald-num">2</span>
+                                    <div class="step-text">
+                                        <strong>酵素催化微絨毛吸收</strong>
+                                        <p>胰液與膽汁混合，單醣、胺基酸進入微血管，脂肪酸進入乳糜管</p>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <span class="step-num emerald-num">3</span>
+                                    <div class="step-text">
+                                        <strong>水分回收與菌群發酵</strong>
+                                        <p>大腸吸收剩餘水分與電解質，腸道益菌發酵纖維生成短鏈脂肪酸</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clinical-box emerald-border">
+                            <div class="clinical-icon">🧠</div>
+                            <div class="clinical-content">
+                                <strong>臨床醫學洞察：腸腦軸線 (Gut-Brain Axis)</strong>
+                                <p>腸道被醫學界稱為「第二大腦」，擁有超過 5 億個神經元組成的腸神經系統（ENS）。全身超過 90%
+                                    的血清素（Serotonin，快樂荷爾蒙）在腸道合成，並透過迷走神經與大腦維持密切雙向反饋。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SYSTEM 4: ENDOCRINE SYSTEM (Reversed Z-Pattern) -->
+        <section class="system-section" id="endocrine">
+            <div class="container">
+                <div class="section-header amber-theme">
+                    <div class="section-badge">
+                        <span class="badge-icon">⚡</span>
+                        <span class="badge-text">SYSTEM 04 • ENDOCRINE SYSTEM</span>
+                    </div>
+                    <h2 class="section-title">內分泌系統：無形的化學調控與動態恆定</h2>
+                    <p class="section-lead">透過血液輸送極微量的荷爾蒙分子，精準調控新陳代謝、生長發育、壓力反應與生殖機能。</p>
+                </div>
+
+                <div class="system-grid reverse-layout">
+                    <!-- Visual Right in desktop -->
+                    <div class="system-visual">
+                        <div class="image-wrapper amber-glow">
+                            <img src="images/endocrine.jpg" alt="內分泌系統 3D 解剖圖" class="system-img">
+                            <div class="image-caption">
+                                <strong>3D 醫學渲染</strong>：下視丘、腦垂腺、甲狀腺、腎上腺、胰島與信號迴路
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Left in desktop -->
+                    <div class="system-info">
+                        <h3 class="info-title">核心構造與生理機制</h3>
+                        <p class="info-desc">
+                            內分泌腺體屬於無導管腺體（Ductless Glands），荷爾蒙直接釋放進入周圍毛細血管，隨血液循環靶向作用於帶有專一受體（Receptors）的目標細胞。
+                        </p>
+
+                        <div class="organ-cards">
+                            <div class="organ-card active" data-organ="pituitary">
+                                <div class="organ-head">
+                                    <span class="organ-bullet amber"></span>
+                                    <h4>下視丘與腦垂腺 (Hypothalamus & Pituitary)</h4>
+                                </div>
+                                <p>內分泌系統的「主控指揮中心」，下視丘整合神經訊號，釋放促釋素指揮腦垂腺分泌生長激素 (GH)、促甲狀腺素 (TSH) 等。</p>
+                            </div>
+                            <div class="organ-card" data-organ="thyroid">
+                                <div class="organ-head">
+                                    <span class="organ-bullet amber"></span>
+                                    <h4>甲狀腺與副甲狀腺 (Thyroid & Parathyroid)</h4>
+                                </div>
+                                <p>分泌甲狀腺素 (T3/T4) 控制全身細胞基礎代謝率與體溫；副甲狀腺素 (PTH) 則精確維持血液中鈣離子濃度平衡。</p>
+                            </div>
+                            <div class="organ-card" data-organ="adrenal">
+                                <div class="organ-head">
+                                    <span class="organ-bullet amber"></span>
+                                    <h4>腎上腺皮質與髓質 (Adrenal Glands)</h4>
+                                </div>
+                                <p>皮質分泌皮質醇（抗壓力與調節免疫）與醛固酮；髓質分泌腎上腺素與正腎上腺素，啟動應激戰鬥逃跑反應 (Fight or Flight)。</p>
+                            </div>
+                            <div class="organ-card" data-organ="pancreas-endo">
+                                <div class="organ-head">
+                                    <span class="organ-bullet amber"></span>
+                                    <h4>胰島細胞群 (Islets of Langerhans)</h4>
+                                </div>
+                                <p>β 細胞分泌胰島素 (Insulin) 促進細胞吸收葡萄糖降低血糖；α 細胞分泌升糖素 (Glucagon) 促使肝醣分解提升血糖。</p>
+                            </div>
+                        </div>
+
+                        <div class="mechanism-box">
+                            <h4 class="mech-title">荷爾蒙負回饋調控機制</h4>
+                            <div class="step-line">
+                                <div class="step-item">
+                                    <span class="step-num amber-num">1</span>
+                                    <div class="step-text">
+                                        <strong>刺激感知與信號釋放</strong>
+                                        <p>體內外環境變化刺激下視丘釋放促釋素，驅動腦垂腺分泌促激素</p>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <span class="step-num amber-num">2</span>
+                                    <div class="step-text">
+                                        <strong>目標腺體生成荷爾蒙</strong>
+                                        <p>目標腺體（如甲狀腺、腎上腺）受刺激產生最終荷爾蒙進入血流</p>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <span class="step-num amber-num">3</span>
+                                    <div class="step-text">
+                                        <strong>負回饋自動抑制</strong>
+                                        <p>血液中荷爾蒙濃度升高時，自動反向抑制下視丘與腦垂腺，維持精準恆定</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clinical-box amber-border">
+                            <div class="clinical-icon">⚖️</div>
+                            <div class="clinical-content">
+                                <strong>臨床醫學洞察：動態恆定性 (Homeostasis)</strong>
+                                <p>即使外界環境劇烈變動（氣溫驟降、劇烈運動或斷食），內分泌系統透過微摩爾級別 (picomolar) 的荷爾蒙濃度微調，使體溫維持在 37°C、血糖維持在 70-99
+                                    mg/dL、體液 pH 維持在 7.35-7.45 的黃金區間。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SYSTEM 5: MUSCULOSKELETAL SYSTEM -->
+        <section class="system-section bg-light" id="musculoskeletal">
+            <div class="container">
+                <div class="section-header indigo-theme">
+                    <div class="section-badge">
+                        <span class="badge-icon">🦴</span>
+                        <span class="badge-text">SYSTEM 05 • MUSCULOSKELETAL SYSTEM</span>
+                    </div>
+                    <h2 class="section-title">骨骼肌肉系統：結構支撐與生物力學協同</h2>
+                    <p class="section-lead">206 塊堅固骨骼、600+ 條肌肉與緻密關節韌帶，構成強韌且敏捷的力學槓桿運動系統。</p>
+                </div>
+
+                <div class="system-grid">
+                    <!-- Visual Left -->
+                    <div class="system-visual">
+                        <div class="image-wrapper indigo-glow">
+                            <img src="images/musculoskeletal.jpg" alt="骨骼肌肉系統 3D 解剖圖" class="system-img">
+                            <div class="image-caption">
+                                <strong>3D 醫學渲染</strong>：骨骼支架、肌原纖維滑行與動態生物力學槓桿
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Right -->
+                    <div class="system-info">
+                        <h3 class="info-title">核心構造與生理機制</h3>
+                        <p class="info-desc">
+                            骨骼提供抗壓支撐與造血功能，肌肉提供主動收縮牽引力，關節與肌腱作為力學傳導鉸鏈與彈性儲能媒介，實現精準平穩的肢體位移。
+                        </p>
+
+                        <div class="organ-cards">
+                            <div class="organ-card active" data-organ="bones">
+                                <div class="organ-head">
+                                    <span class="organ-bullet indigo"></span>
+                                    <h4>骨骼系統 (206 Bones)</h4>
+                                </div>
+                                <p>由軸向骨（頭顱、脊椎、肋骨）與附肢骨構成；骨髓內具造血幹細胞生成紅血球、白血球與血小板，並儲存 99% 人體鈣質。</p>
+                            </div>
+                            <div class="organ-card" data-organ="muscles">
+                                <div class="organ-head">
+                                    <span class="organ-bullet indigo"></span>
+                                    <h4>骨骼肌與肌原纖維 (Skeletal Muscle Fibers)</h4>
+                                </div>
+                                <p>由粗肌絲（肌凝蛋白）與細肌絲（肌動蛋白）排列成肌節 (Sarcomere)，依賴 ATP 與鈣離子滑行產生強大收縮牽引力。</p>
+                            </div>
+                            <div class="organ-card" data-organ="joints">
+                                <div class="organ-head">
+                                    <span class="organ-bullet indigo"></span>
+                                    <h4>滑液關節與軟骨 (Synovial Joints & Cartilage)</h4>
+                                </div>
+                                <p>關節軟骨具備極低摩擦係數（比兩塊冰塊摩擦還滑順 5 倍），滑液囊提供潤滑與抗震緩衝。</p>
+                            </div>
+                            <div class="organ-card" data-organ="tendons">
+                                <div class="organ-head">
+                                    <span class="organ-bullet indigo"></span>
+                                    <h4>肌腱與韌帶 (Tendons & Ligaments)</h4>
+                                </div>
+                                <p>肌腱將肌肉強大收縮力傳遞至骨骼；韌帶連接骨與骨維持關節穩定，抗拉強度可媲美同等直徑之鋼纜。</p>
+                            </div>
+                        </div>
+
+                        <div class="mechanism-box">
+                            <h4 class="mech-title">神經肌肉收縮滑行機制</h4>
+                            <div class="step-line">
+                                <div class="step-item">
+                                    <span class="step-num indigo-num">1</span>
+                                    <div class="step-text">
+                                        <strong>神經衝動激發</strong>
+                                        <p>運動神經元釋放乙醯膽鹼 (ACh)，引發肌纖維膜動作電位傳播</p>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <span class="step-num indigo-num">2</span>
+                                    <div class="step-text">
+                                        <strong>鈣離子釋放與肌絲滑行</strong>
+                                        <p>肌漿網釋放 Ca²⁺，肌凝蛋白橫橋水解 ATP 牽引肌動蛋白向中心滑動</p>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <span class="step-num indigo-num">3</span>
+                                    <div class="step-text">
+                                        <strong>槓桿牽引關節位移</strong>
+                                        <p>肌纖維縮短拉動肌腱，以關節為支點完成骨骼槓桿運動</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clinical-box indigo-border">
+                            <div class="clinical-icon">🔄</div>
+                            <div class="clinical-content">
+                                <strong>臨床醫學洞察：骨骼動態重塑與沃爾夫定律 (Wolff's Law)</strong>
+                                <p>骨骼並非靜止結構，而是持續進行「造骨細胞 (Osteoblasts)」合成與「破骨細胞 (Osteoclasts)」吸收的動態平衡。成人的骨骼系統每 10
+                                    年就會完整更新一次；適度的阻力運動能顯著刺激骨質密度增強。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SYSTEM COORDINATION & HOMEOSTASIS -->
+        <section class="coordination-section" id="coordination">
+            <div class="container">
+                <div class="section-header center-align">
+                    <div class="section-badge">
+                        <span class="badge-icon">🌐</span>
+                        <span class="badge-text">SYSTEM COORDINATION & HOMEOSTASIS</span>
+                    </div>
+                    <h2 class="section-title">人體協同作動與自我修復奇蹟</h2>
+                    <p class="section-lead">人體五大系統從不單獨運作。透過即時神經與體液交互作用，身體能適應各種極端挑戰並持續修復自我。</p>
+                </div>
+
+                <!-- Interactive Scenario Matrix -->
+                <div class="scenario-container">
+                    <div class="scenario-tabs" id="scenario-tabs">
+                        <button class="scenario-tab active" data-scenario="exercise">
+                            <span class="tab-icon">🏃</span>
+                            <span class="tab-name">劇烈運動狀態 (High Output)</span>
+                        </button>
+                        <button class="scenario-tab" data-scenario="sleep">
+                            <span class="tab-icon">🛌</span>
+                            <span class="tab-name">深度睡眠修復 (Deep Rest)</span>
+                        </button>
+                        <button class="scenario-tab" data-scenario="meal">
+                            <span class="tab-icon">🍽️</span>
+                            <span class="tab-name">進食消化狀態 (Nutrient Ingestion)</span>
+                        </button>
+                    </div>
+
+                    <div class="scenario-content-card" id="scenario-content">
+                        <!-- Dynamic via JS -->
+                        <div class="scenario-header">
+                            <h3 id="scenario-title">🏃 劇烈運動狀態下的跨系統協同作動</h3>
+                            <span class="status-pill pulse-fast" id="scenario-tag">交感神經高亢激發</span>
+                        </div>
+                        <div class="synergy-grid" id="synergy-grid">
+                            <div class="synergy-card cyan-border">
+                                <div class="syn-icon">🫁 呼吸系統</div>
+                                <h4>通氣量暴增 10 倍</h4>
+                                <p>呼吸頻率增至 40-50 次/分，肺泡通氣量可自靜止時 6 L/min 提升至 100+ L/min，全力供應肌肉耗氧。</p>
+                            </div>
+                            <div class="synergy-card red-border">
+                                <div class="syn-icon">🫀 循環系統</div>
+                                <h4>心輸出量提高 4~5 倍</h4>
+                                <p>心率可由 70 次升至 170+ 次/分，微血管大量舒張，骨骼肌血流佔全身心輸出量比例由 20% 飆升至 85%。</p>
+                            </div>
+                            <div class="synergy-card amber-border">
+                                <div class="syn-icon">⚡ 內分泌系統</div>
+                                <h4>腎上腺素全面釋放</h4>
+                                <p>腎上腺釋放腎上腺素與正腎上腺素，刺激肝醣迅速分解為葡萄糖，擴張支氣管並提高心肌收縮力。</p>
+                            </div>
+                            <div class="synergy-card indigo-border">
+                                <div class="syn-icon">🦴 骨骼肌肉</div>
+                                <h4>肌纖維高頻 ATP 消耗</h4>
+                                <p>磷酸肌酸與有氧/無氧醣解系統全力發電，肌原纖維高頻滑行收縮，關節滑液增生保護軟骨。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Self Repair Mechanisms -->
+                <div class="repair-section">
+                    <h3 class="sub-title center-align">人體三大自癒與恆定保護機制</h3>
+                    <div class="repair-cards-grid">
+                        <div class="repair-card">
+                            <div class="repair-icon">🛡️</div>
+                            <h4>多層級免疫防禦 (Immune Defense)</h4>
+                            <p>先天性免疫（吞噬細胞、自然殺手細胞）第一時間清除入侵異物；後天性免疫（T 細胞與 B 細胞）精準產生特異性抗體，並建立長期免疫記憶庫。</p>
+                        </div>
+                        <div class="repair-card">
+                            <div class="repair-icon">🩹</div>
+                            <h4>微血管與組織創傷止血修復 (Hemostasis)</h4>
+                            <p>血管受損時，血小板於數秒內黏附聚集形成初步血栓；凝血瀑布生成纖維蛋白交聯網固化傷口，隨後纖維母細胞與上皮細胞再生修復組織。</p>
+                        </div>
+                        <div class="repair-card">
+                            <div class="repair-icon">🧬</div>
+                            <h4>細胞自噬與 DNA 修復 (Autophagy & Repair)</h4>
+                            <p>細胞利用溶酶體降解老化受損胞器並回收胺基酸原料（自噬作用）；DNA 修復酵素每秒監控並修正數千處複製錯誤，捍衛基因組穩定。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE KNOWLEDGE QUIZ -->
+        <section class="quiz-section" id="quiz">
+            <div class="container">
+                <div class="section-header center-align">
+                    <div class="section-badge">
+                        <span class="badge-icon">🎯</span>
+                        <span class="badge-text">INTERACTIVE ANATOMY QUIZ</span>
+                    </div>
+                    <h2 class="section-title">解剖生理學知識互動檢測</h2>
+                    <p class="section-lead">透過 4 道精選的解剖與生理學互動測驗題，檢驗您對人體核心系統的掌握程度！</p>
+                </div>
+
+                <div class="quiz-wrapper">
+                    <div class="quiz-card" id="quiz-card">
+                        <div class="quiz-meta">
+                            <span class="quiz-counter" id="quiz-counter">問題 1 / 4</span>
+                            <span class="quiz-score-badge" id="quiz-score-badge">目前得分: 0</span>
+                        </div>
+
+                        <div class="quiz-progress-bar">
+                            <div class="quiz-progress-fill" id="quiz-progress-fill" style="width: 25%;"></div>
+                        </div>
+
+                        <div class="quiz-body">
+                            <h3 class="quiz-question" id="quiz-question-text">
+                                載入題目中...
+                            </h3>
+                            <div class="quiz-options" id="quiz-options">
+                                <!-- Generated via JS -->
+                            </div>
+
+                            <div class="quiz-feedback hidden" id="quiz-feedback">
+                                <div class="feedback-badge" id="feedback-badge">正確！</div>
+                                <p class="feedback-text" id="feedback-text"></p>
+                                <button class="btn-primary" id="btn-next-question">下一題 →</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Result Card (Initially hidden) -->
+                    <div class="quiz-result-card hidden" id="quiz-result-card">
+                        <div class="result-badge-icon" id="result-icon">🏆</div>
+                        <h3 class="result-title" id="result-title">測驗完成！</h3>
+                        <p class="result-desc" id="result-desc">您的成績如下：</p>
+                        <div class="result-score-circle">
+                            <span class="score-val" id="result-score-val">100</span>
+                            <span class="score-max">/ 100 分</span>
+                        </div>
+                        <p class="result-evaluation" id="result-evaluation">太厲害了！您對人體解剖生理構造有著極為精確的理解！</p>
+                        <button class="btn-primary" id="btn-restart-quiz">再次挑戰 🔄</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <div class="brand-logo">
+                    <div class="brand-icon">🧬</div>
+                    <div class="brand-text">
+                        <span class="brand-title">AnatomyExplorer</span>
+                        <span class="brand-subtitle">人體構造奧秘</span>
+                    </div>
+                </div>
+                <p class="footer-desc">
+                    致力於「解剖學清晰度 (Anatomical Clarity)」，透過現代 3D 視覺與專業醫學科學知識，為學生、教師與大眾打造直觀易懂的生理探索平台。
+                </p>
+                <div class="footer-badges">
+                    <span class="f-badge">Medical 3D Visualization</span>
+                    <span class="f-badge">Educational Resource</span>
+                    <span class="f-badge">Responsive Design</span>
+                </div>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>核心解剖系統</h4>
+                <ul>
+                    <li><a href="#respiratory">🫁 呼吸系統 (Respiratory)</a></li>
+                    <li><a href="#circulatory">🫀 循環系統 (Circulatory)</a></li>
+                    <li><a href="#digestive">🥗 消化系統 (Digestive)</a></li>
+                    <li><a href="#endocrine">⚡ 內分泌系統 (Endocrine)</a></li>
+                    <li><a href="#musculoskeletal">🦴 骨骼肌肉 (Musculoskeletal)</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>互動模組與知識</h4>
+                <ul>
+                    <li><a href="#coordination">人體協同作動矩陣</a></li>
+                    <li><a href="#coordination">三大自癒修復機制</a></li>
+                    <li><a href="#quiz">解剖生理學互動測驗</a></li>
+                    <li><a href="#hero">人體關鍵數據統計</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>醫學教育聲明</h4>
+                <p class="disclaimer-text">
+                    本網站內容為解剖學與生理學教育科普用途。若有具體臨床健康或疾病問題，請務必諮詢合格之專業執業醫師。
+                </p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container bottom-flex">
+                <p>© 2026 Human Anatomy Explorer (人體構造奧秘). Designed with Anatomical Clarity.</p>
+                <a href="#hero" class="back-to-top" id="back-to-top">回到頂部 ↑</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script src="script.js"></script>
+</body>
+
+</html>
